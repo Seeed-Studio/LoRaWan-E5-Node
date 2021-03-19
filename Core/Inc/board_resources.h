@@ -40,13 +40,9 @@ extern "C" {
   */
 typedef enum
 {
-  SYS_LED3 = 0,
-  SYS_LED2 = 1,
-  SYS_LED1 = 2,
+  SYS_LED2 = 0,
   /* Color SYS_LED aliases */
-  SYS_LED_BLUE   = SYS_LED1,
-  SYS_LED_GREEN  = SYS_LED2,
-  SYS_LED_RED    = SYS_LED3
+  SYS_LED_BLUE   = SYS_LED2,
 } Sys_Led_TypeDef;
 
 /**
@@ -55,8 +51,6 @@ typedef enum
 typedef enum
 {
   SYS_BUTTON1 = 0,
-  SYS_BUTTON3 = 1,
-  SYS_BUTTON2 = 2,
 } Sys_Button_TypeDef;
 
 /**
@@ -76,31 +70,13 @@ typedef enum
 /**
   * @brief Number of leds
   */
-#define SYS_LEDn                                     3U
-
-/**  Definition for BSP USER LED 3  **/
-/**
-  * @brief Pin of Led3
-  */
-#define SYS_LED3_PIN                                GPIO_PIN_11
-/**
-  * @brief Port of Led3
-  */
-#define SYS_LED3_GPIO_PORT                          GPIOB
-/**
-  * @brief Enable GPIOs clock of Led3
-  */
-#define SYS_LED3_GPIO_CLK_ENABLE()                  __HAL_RCC_GPIOB_CLK_ENABLE()
-/**
-  * @brief Disable GPIOs clock of Led3
-  */
-#define SYS_LED3_GPIO_CLK_DISABLE()                 __HAL_RCC_GPIOB_CLK_ENABLE()
+#define SYS_LEDn                                     1U
 
 /**  Definition for BSP USER LED 2  **/
 /**
   * @brief Pin of Led2
   */
-#define SYS_LED2_PIN                                GPIO_PIN_9
+#define SYS_LED2_PIN                                GPIO_PIN_5
 /**
   * @brief Port of Led2
   */
@@ -114,28 +90,10 @@ typedef enum
   */
 #define SYS_LED2_GPIO_CLK_DISABLE()                 __HAL_RCC_GPIOB_CLK_ENABLE()
 
-/**  Definition for BSP USER LED 1  **/
-/**
-  * @brief Pin of Led1
-  */
-#define SYS_LED1_PIN                                GPIO_PIN_15
-/**
-  * @brief Port of Led1
-  */
-#define SYS_LED1_GPIO_PORT                          GPIOB
-/**
-  * @brief Enable GPIOs clock of Led1
-  */
-#define SYS_LED1_GPIO_CLK_ENABLE()                  __HAL_RCC_GPIOB_CLK_ENABLE()
-/**
-  * @brief Disable GPIOs clock of Led1
-  */
-#define SYS_LED1_GPIO_CLK_DISABLE()                 __HAL_RCC_GPIOB_CLK_ENABLE()
-
 /**
   * @brief Number of buttons
   */
-#define SYS_BUTTONn                                 3U
+#define SYS_BUTTONn                                 1U
 
 /**
   * @brief Key push-buttons
@@ -144,89 +102,31 @@ typedef enum
 /**
   * @brief Pin of Button1
   */
-#define SYS_BUTTON1_PIN                    GPIO_PIN_0
+#define SYS_BUTTON1_PIN                    GPIO_PIN_13
 /**
   * @brief Port of Button1
   */
-#define SYS_BUTTON1_GPIO_PORT              GPIOA
+#define SYS_BUTTON1_GPIO_PORT              GPIOB
 /**
   * @brief Enable GPIOs clock of Button1
   */
-#define SYS_BUTTON1_GPIO_CLK_ENABLE()      __HAL_RCC_GPIOA_CLK_ENABLE()
+#define SYS_BUTTON1_GPIO_CLK_ENABLE()      __HAL_RCC_GPIOB_CLK_ENABLE()
 /**
   * @brief Disable GPIOs clock of Button1
   */
-#define SYS_BUTTON1_GPIO_CLK_DISABLE()     __HAL_RCC_GPIOA_CLK_ENABLE()
+#define SYS_BUTTON1_GPIO_CLK_DISABLE()     __HAL_RCC_GPIOB_CLK_ENABLE()
 /**
   * @brief Interrupt number of Button1
   */
-#define SYS_BUTTON1_EXTI_IRQn              EXTI0_IRQn
+#define SYS_BUTTON1_EXTI_IRQn              EXTI15_10_IRQn
 /**
   * @brief Interrupt line of Button1
   */
-#define SYS_BUTTON1_EXTI_LINE              EXTI_LINE_0
+#define SYS_BUTTON1_EXTI_LINE              EXTI_LINE_13
 /**
   * @brief Exti handle of Button1
   */
-#define H_EXTI_GPIO_PIN_0                  sys_hpb_exti[SYS_BUTTON1]
-/**  Definition for BSP USER BUTTON 3   **/
-/**
-  * @brief Pin of Button3
-  */
-#define SYS_BUTTON3_PIN                    GPIO_PIN_6
-/**
-  * @brief Port of Button3
-  */
-#define SYS_BUTTON3_GPIO_PORT              GPIOC
-/**
-  * @brief Enable GPIOs clock of Button3
-  */
-#define SYS_BUTTON3_GPIO_CLK_ENABLE()      __HAL_RCC_GPIOC_CLK_ENABLE()
-/**
-  * @brief Disable GPIOs clock of Button3
-  */
-#define SYS_BUTTON3_GPIO_CLK_DISABLE()     __HAL_RCC_GPIOC_CLK_ENABLE()
-/**
-  * @brief Interrupt number of Button3
-  */
-#define SYS_BUTTON3_EXTI_IRQn              EXTI9_5_IRQn
-/**
-  * @brief Interrupt line of Button3
-  */
-#define SYS_BUTTON3_EXTI_LINE              EXTI_LINE_6
-/**
-  * @brief Exti handle of Button3
-  */
-#define H_EXTI_GPIO_PIN_6                  sys_hpb_exti[SYS_BUTTON3]
-/**  Definition for BSP USER BUTTON 2   **/
-/**
-  * @brief Pin of Button2
-  */
-#define SYS_BUTTON2_PIN                    GPIO_PIN_1
-/**
-  * @brief Port of Button2
-  */
-#define SYS_BUTTON2_GPIO_PORT              GPIOA
-/**
-  * @brief Enable GPIOs clock of Button2
-  */
-#define SYS_BUTTON2_GPIO_CLK_ENABLE()      __HAL_RCC_GPIOA_CLK_ENABLE()
-/**
-  * @brief Disable GPIOs clock of Button2
-  */
-#define SYS_BUTTON2_GPIO_CLK_DISABLE()     __HAL_RCC_GPIOA_CLK_ENABLE()
-/**
-  * @brief Interrupt number of Button2
-  */
-#define SYS_BUTTON2_EXTI_IRQn              EXTI1_IRQn
-/**
-  * @brief Interrupt line of Button2
-  */
-#define SYS_BUTTON2_EXTI_LINE              EXTI_LINE_1
-/**
-  * @brief Exti handle of Button2
-  */
-#define H_EXTI_GPIO_PIN_1                  sys_hpb_exti[SYS_BUTTON2]
+#define H_EXTI_GPIO_PIN_13                  sys_hpb_exti[SYS_BUTTON1]
 
 /**
   * IRQ priorities
@@ -251,16 +151,12 @@ typedef enum
 /**
   * @brief Enable all Buttons clock
   */
-#define SYS_BUTTONx_GPIO_CLK_ENABLE(__INDEX__)    do { if ((__INDEX__) == SYS_BUTTON1) SYS_BUTTON1_GPIO_CLK_ENABLE(); else \
-                                                       if ((__INDEX__) == SYS_BUTTON2) SYS_BUTTON2_GPIO_CLK_ENABLE(); else \
-                                                     if ((__INDEX__) == SYS_BUTTON3) SYS_BUTTON3_GPIO_CLK_ENABLE();} while(0)
+#define SYS_BUTTONx_GPIO_CLK_ENABLE(__INDEX__)    do { if ((__INDEX__) == SYS_BUTTON1) SYS_BUTTON1_GPIO_CLK_ENABLE(); } while(0)
 
 /**
   * @brief Disable all Buttons clock
   */
-#define SYS_BUTTONx_GPIO_CLK_DISABLE(__INDEX__)    do { if ((__INDEX__) == SYS_BUTTON1) SYS_BUTTON1_GPIO_CLK_DISABLE(); else \
-                                                       if ((__INDEX__) == SYS_BUTTON2) SYS_BUTTON2_GPIO_CLK_DISABLE(); else \
-                                                     if ((__INDEX__) == SYS_BUTTON3) SYS_BUTTON3_GPIO_CLK_DISABLE();} while(0)
+#define SYS_BUTTONx_GPIO_CLK_DISABLE(__INDEX__)    do { if ((__INDEX__) == SYS_BUTTON1) SYS_BUTTON1_GPIO_CLK_DISABLE(); } while(0)
 
 /* USER CODE BEGIN EM */
 
@@ -283,9 +179,7 @@ extern EXTI_HandleTypeDef sys_hpb_exti[SYS_BUTTONn];
   * @brief  Configures SYS_LED GPIO.
   * @param  SYS_LED to be configured
   *         This parameter can be one of the following values:
-  *            @arg SYS_LED3
   *            @arg SYS_LED2
-  *            @arg SYS_LED1
   * @return BSP status
   */
 int32_t          SYS_LED_Init(Sys_Led_TypeDef SYS_LED);
@@ -294,9 +188,7 @@ int32_t          SYS_LED_Init(Sys_Led_TypeDef SYS_LED);
   * @brief  DeInit SYS_LEDs.
   * @param  SYS_LED to be de-init
   *         This parameter can be one of the following values:
-  *            @arg SYS_LED3
   *            @arg SYS_LED2
-  *            @arg SYS_LED1
   * @note Led DeInit does not disable the GPIO clock nor disable the Mfx
   * @return BSP status
   */
@@ -306,9 +198,7 @@ int32_t          SYS_LED_DeInit(Sys_Led_TypeDef SYS_LED);
   * @brief  Turns selected SYS_LED On.
   * @param  SYS_LED Specifies the Led to be set on
   *         This parameter can be one of the following values:
-  *            @arg SYS_LED3
   *            @arg SYS_LED2
-  *            @arg SYS_LED1
   * @return BSP status
   */
 int32_t          SYS_LED_On(Sys_Led_TypeDef SYS_LED);
@@ -317,9 +207,7 @@ int32_t          SYS_LED_On(Sys_Led_TypeDef SYS_LED);
   * @brief  Turns selected SYS_LED Off.
   * @param  SYS_LED Specifies the Led to be set off
   *         This parameter can be one of the following values:
-  *            @arg SYS_LED3
   *            @arg SYS_LED2
-  *            @arg SYS_LED1
   * @return BSP status
   */
 int32_t          SYS_LED_Off(Sys_Led_TypeDef SYS_LED);
@@ -328,9 +216,7 @@ int32_t          SYS_LED_Off(Sys_Led_TypeDef SYS_LED);
   * @brief  Toggles the selected SYS_LED.
   * @param  SYS_LED Specifies the Led to be toggled
   *         This parameter can be one of the following values:
-  *            @arg SYS_LED3
   *            @arg SYS_LED2
-  *            @arg SYS_LED1
   * @return BSP status
   */
 int32_t          SYS_LED_Toggle(Sys_Led_TypeDef SYS_LED);
@@ -339,9 +225,7 @@ int32_t          SYS_LED_Toggle(Sys_Led_TypeDef SYS_LED);
   * @brief  Get the status of the selected SYS_LED.
   * @param  SYS_LED Specifies the Led to get its state
   *         This parameter can be one of following parameters:
-  *            @arg SYS_LED3
   *            @arg SYS_LED2
-  *            @arg SYS_LED1
   * @return SYS_LED status
   */
 int32_t          SYS_LED_GetState(Sys_Led_TypeDef SYS_LED);
@@ -357,8 +241,6 @@ int32_t          SYS_LED_GetState(Sys_Led_TypeDef SYS_LED);
   * @param  Button Specifies the Button to be configured
   *         This parameter can be one of following parameters:
   *            @arg SYS_BUTTON1
-  *            @arg SYS_BUTTON3
-  *            @arg SYS_BUTTON2
   * @param  ButtonMode Specifies Button mode
   *   This parameter can be one of following parameters:
   *     @arg SYS_BUTTON_MODE_GPIO: Button will be used as simple IO
@@ -373,8 +255,6 @@ int32_t          SYS_PB_Init(Sys_Button_TypeDef Button, Sys_ButtonMode_TypeDef B
   * @param  Button Button to be configured
   *         This parameter can be one of following parameters:
   *            @arg SYS_BUTTON1
-  *            @arg SYS_BUTTON3
-  *            @arg SYS_BUTTON2
   * @note PB DeInit does not disable the GPIO clock
   * @return BSP status
   */
@@ -385,8 +265,6 @@ int32_t          SYS_PB_DeInit(Sys_Button_TypeDef Button);
   * @param  Button Specifies the Button to be checked
   *         This parameter can be one of following parameters:
   *            @arg SYS_BUTTON1
-  *            @arg SYS_BUTTON3
-  *            @arg SYS_BUTTON2
   * @return The Button GPIO pin value.
   */
 int32_t          SYS_PB_GetState(Sys_Button_TypeDef Button);
@@ -396,8 +274,6 @@ int32_t          SYS_PB_GetState(Sys_Button_TypeDef Button);
   * @param  Button Specifies the Button to be checked
   *         This parameter can be one of following parameters:
   *            @arg SYS_BUTTON1
-  *            @arg SYS_BUTTON3
-  *            @arg SYS_BUTTON2
   */
 void             SYS_PB_Callback(Sys_Button_TypeDef Button);
 

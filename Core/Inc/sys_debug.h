@@ -47,28 +47,28 @@ extern "C" {
 /**
   * @brief Pin of Debug Line 1
   */
-#define DGB_LINE1_PIN                           GPIO_PIN_12
+#define DGB_LINE1_PIN                           GPIO_PIN_0
 
 /**
   * @brief Port of Debug Line 1
   */
-#define DGB_LINE1_PORT                          GPIOB
+#define DGB_LINE1_PORT                          GPIOA
 
 /**
   * @brief Enable GPIOs clock of Debug Line 1
   */
-#define DGB_LINE1_CLK_ENABLE()                  __HAL_RCC_GPIOB_CLK_ENABLE()
+#define DGB_LINE1_CLK_ENABLE()                  __HAL_RCC_GPIOA_CLK_ENABLE()
 
 /**
   * @brief Disable GPIOs clock of Debug Line 1
   */
-#define DGB_LINE1_CLK_DISABLE()                 __HAL_RCC_GPIOB_CLK_DISABLE()
+#define DGB_LINE1_CLK_DISABLE()                 __HAL_RCC_GPIOA_CLK_DISABLE()
 
 /**  Definition for Debug Line 2   **/
 /**
   * @brief Pin of Debug Line 2
   */
-#define DGB_LINE2_PIN                           GPIO_PIN_13
+#define DGB_LINE2_PIN                           GPIO_PIN_10
 
 /**
   * @brief Port of Debug Line 2
@@ -89,7 +89,7 @@ extern "C" {
 /**
   * @brief Pin of Debug Line 3
   */
-#define DGB_LINE3_PIN                           GPIO_PIN_14
+#define DGB_LINE3_PIN                           GPIO_PIN_3
 
 /**
   * @brief Port of Debug Line 3
@@ -110,7 +110,7 @@ extern "C" {
 /**
   * @brief Pin of Debug Line 4
   */
-#define DGB_LINE4_PIN                           GPIO_PIN_10
+#define DGB_LINE4_PIN                           GPIO_PIN_4
 
 /**
   * @brief Port of Debug Line 4

@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under Ultimate Liberty license
@@ -235,9 +235,9 @@ void LoRaWAN_Init(void)
   BSP_PB_Init(BUTTON_SW2, BUTTON_MODE_EXTI);
 #elif defined(MX_BOARD_PSEUDODRIVER)
   SYS_LED_Init(SYS_LED_BLUE);
-  SYS_LED_Init(SYS_LED_GREEN);
-  SYS_LED_Init(SYS_LED_RED);
-  SYS_PB_Init(SYS_BUTTON2, SYS_BUTTON_MODE_EXTI);
+  // SYS_LED_Init(SYS_LED_GREEN);
+  // SYS_LED_Init(SYS_LED_RED);
+  // SYS_PB_Init(SYS_BUTTON2, SYS_BUTTON_MODE_EXTI);
 #else
 #error user to provide its board code or to call his board driver functions
 #endif  /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
@@ -355,10 +355,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
       /* USER CODE BEGIN EXTI_Callback_Switch_B1 */
       /* USER CODE END EXTI_Callback_Switch_B1 */
       break;
-    case  SYS_BUTTON2_PIN:
-      /* USER CODE BEGIN EXTI_Callback_Switch_B2 */
-      /* USER CODE END EXTI_Callback_Switch_B2 */
-      break;
+    // case  SYS_BUTTON2_PIN:
+    //   /* USER CODE BEGIN EXTI_Callback_Switch_B2 */
+    //   /* USER CODE END EXTI_Callback_Switch_B2 */
+    //   break;
     /* USER CODE BEGIN EXTI_Callback_Switch_case */
 
     /* USER CODE END EXTI_Callback_Switch_case */
@@ -438,7 +438,7 @@ static void OnRxData(LmHandlerAppData_t *appData, LmHandlerRxParams_t *params)
 #if defined(USE_BSP_DRIVER)
             BSP_LED_Off(LED_RED) ;
 #elif defined(MX_BOARD_PSEUDODRIVER)
-            SYS_LED_Off(SYS_LED_RED) ;
+            // SYS_LED_Off(SYS_LED_RED) ;
 #endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
           }
           else
@@ -447,7 +447,7 @@ static void OnRxData(LmHandlerAppData_t *appData, LmHandlerRxParams_t *params)
 #if defined(USE_BSP_DRIVER)
             BSP_LED_On(LED_RED) ;
 #elif defined(MX_BOARD_PSEUDODRIVER)
-            SYS_LED_On(SYS_LED_RED) ;
+            // SYS_LED_On(SYS_LED_RED) ;
 #endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
           }
         }
@@ -581,7 +581,7 @@ static void OnTxTimerLedEvent(void *context)
 #if defined(USE_BSP_DRIVER)
   BSP_LED_Off(LED_GREEN) ;
 #else
-  SYS_LED_Off(SYS_LED_GREEN) ;
+  // SYS_LED_Off(SYS_LED_GREEN) ;
 #endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
   /* USER CODE BEGIN OnTxTimerLedEvent_2 */
 
@@ -611,7 +611,7 @@ static void OnJoinTimerLedEvent(void *context)
 #if defined(USE_BSP_DRIVER)
   BSP_LED_Toggle(LED_RED) ;
 #else
-  SYS_LED_Toggle(SYS_LED_RED) ;
+  // SYS_LED_Toggle(SYS_LED_RED) ;
 #endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
   /* USER CODE BEGIN OnJoinTimerLedEvent_2 */
 
@@ -628,7 +628,7 @@ static void OnTxData(LmHandlerTxParams_t *params)
 #if defined(USE_BSP_DRIVER)
     BSP_LED_On(LED_GREEN) ;
 #elif defined(MX_BOARD_PSEUDODRIVER)
-    SYS_LED_On(SYS_LED_GREEN) ;
+    // SYS_LED_On(SYS_LED_GREEN) ;
 #endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
     UTIL_TIMER_Start(&TxLedTimer);
 
@@ -666,7 +666,7 @@ static void OnJoinRequest(LmHandlerJoinParams_t *joinParams)
 #if defined(USE_BSP_DRIVER)
       BSP_LED_Off(LED_RED) ;
 #elif defined(MX_BOARD_PSEUDODRIVER)
-      SYS_LED_Off(SYS_LED_RED) ;
+      // SYS_LED_Off(SYS_LED_RED) ;
 #endif /* USE_BSP_DRIVER || MX_BOARD_PSEUDODRIVER */
 
       APP_LOG(TS_OFF, VLEVEL_M, "\r\n###### = JOINED = ");
