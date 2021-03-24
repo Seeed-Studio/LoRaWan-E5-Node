@@ -41,7 +41,7 @@ This wiki is for LoRa-E5 Mini or LoRa-E5 Dev Board, aiming at creating a LoRaWAN
 
 ### 1. Build the LoRaWAN End Node Example
 
-- Download and copy this repo to your SDK folder `en.stm32cubewl\STM32Cube_FW_WL_V1.0.0\Projects\NUCLEO-WL55JC\Applications\LoRaWAN` and replace the origin `en.stm32cubewl\STM32Cube_FW_WL_V1.0.0\Projects\NUCLEO-WL55JC\Applications\LoRaWAN\LoRaWAN_End_Node` folder
+- Download and copy [this repo](https://github.com/seeed-lora/LoRa-E5-LoRaWAN-End-Node.git) to your SDK folder `en.stm32cubewl\STM32Cube_FW_WL_V1.0.0\Projects\NUCLEO-WL55JC\Applications\LoRaWAN` and replace the origin `en.stm32cubewl\STM32Cube_FW_WL_V1.0.0\Projects\NUCLEO-WL55JC\Applications\LoRaWAN\LoRaWAN_End_Node` folder
 
 - Open the `LoRaWAN_End_Node` example with `STM32CubeIDE`, by double click file `LoRaWAN_End_Node\STM32CubeIDE\.project`
 
@@ -124,3 +124,5 @@ MW_RADIO_VERSION:   V0.6.1
 ```
 
 ![](Doc/serial.png)
+
+- Cheers! You have already connected LoRa-E5 to LoRaWAN Network! Can't wait to see you develop some wonderful LoRaWAN End Node applications!
