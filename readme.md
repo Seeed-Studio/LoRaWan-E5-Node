@@ -49,7 +49,7 @@ This wiki is for LoRa-E5 Mini or LoRa-E5 Dev Board, aiming at creating a LoRaWAN
 
 ![build](Doc/build.png)
 
-### 2. Modify your Device EUI and Application EUI
+### 2. Modify your Device EUI, Application EUI, Application KEY and your LoRawan Region
 
 - Please follow the [guide](https://wiki.seeedstudio.com/LoRa_E5_mini/#13-connect-and-send-data-to-ttn) here to setup your TTN application, get your Application EUI and copy it to the macro definition `LORAWAN_JOIN_EUI` in `LoRaWAN/App/se-identity.h` , for example, my Application EUI is `70 B3 D5 7E D0 03 F0 6A` :
 
@@ -63,7 +63,7 @@ This wiki is for LoRa-E5 Mini or LoRa-E5 Dev Board, aiming at creating a LoRaWAN
 
 ```
 
-- Also, you can modify your Device EUI, by setting the macro definition `LORAWAN_DEVICE_EUI` in `LoRaWAN/App/se-identity.h` , don't forget to ensure `LORAWAN_DEVICE_EUI` is the same as the `Device EUI` in TTN console.
+- Also, you can modify your Device EUI and Application Key, by setting the macro definition `LORAWAN_DEVICE_EUI` and `LORAWAN_APP_KEY` in `LoRaWAN/App/se-identity.h` , don't forget to ensure `LORAWAN_DEVICE_EUI` and `LORAWAN_APP_KEY` are the same as the `Device EUI` and `App Key` in TTN console.
 
 ```C
 // LoRaWAN/App/se-identity.h
@@ -73,13 +73,38 @@ This wiki is for LoRa-E5 Mini or LoRa-E5 Dev Board, aiming at creating a LoRaWAN
  */
 #define LORAWAN_DEVICE_EUI                                 { 0x00, 0x80, 0xE1, 0x15, 0x00, 0x07, 0x4C, 0xD5 }
 
+/*!
+ * Application root key
+ */
+#define LORAWAN_APP_KEY                                    2B,7E,15,16,28,AE,D2,A6,AB,F7,15,88,09,CF,4F,3C
 ```
 
-- After modification, please **rebuild the example** and program to your LoRa-E5. Make sure the Read Out Protection is `AA`, if it is shown as `BB`, select `AA` and click `Apply`:
+![](Doc/key.png)
 
-![](Doc/read-protect.png)
+- The default LoRaWAN Region is `EU868`, you can modify it, by setting the macro definition `ACTIVE_REGION` in `LoRaWAN/App/lora_app.h`
 
-![](Doc/start-programming.png)
+```c
+// LoRaWAN/App/lora_app.h
+
+/* LoraWAN application configuration (Mw is configured by lorawan_conf.h) */
+/* Available: LORAMAC_REGION_AS923, LORAMAC_REGION_AU915, LORAMAC_REGION_EU868, LORAMAC_REGION_KR920, LORAMAC_REGION_IN865, LORAMAC_REGION_US915, LORAMAC_REGION_RU864 */
+#define ACTIVE_REGION                               LORAMAC_REGION_EU868
+
+```
+
+![](Doc/region.png)
+
+- After modification, please **rebuild the example** and program to your LoRa-E5. Open `STM32CubeProgrammer`, connect ST-LINK to your PC, hold `RESET Button` of your Device, then click `Connect` and release `RESET Button`:
+
+![](Doc/program1.png)
+
+- Make sure the Read Out Protection is `AA`, if it is shown as `BB`, select `AA` and click `Apply`:
+
+![](Doc/program2.png)
+
+- Now, go to the `Erasing & Programming` page, select your hex file path(my path is `E:\en.stm32cubewl\STM32Cube_FW_WL_V1.0.0\Projects\NUCLEO-WL55JC\Applications\LoRaWAN\LoRaWAN_End_Node\STM32CubeIDE\LoRaWAN_End_Node_Debug.hex` ), select the programming options as the following picture, then click `Start Programming`! Once the prgramming is finished, 
+
+![](Doc/program3.png)
 
 
 ### 3. Connect to TTN
