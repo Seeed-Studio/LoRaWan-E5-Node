@@ -25,13 +25,13 @@ This wiki is for LoRa-E5 Mini or LoRa-E5 Dev Board, aiming at creating a LoRaWAN
 |RF_CTRL1|PC4|PA4|
 |RF_CTRL2|PC5|PA5|
 |RF_CTRL3|PC3|None|
-|BUT1|PA0|PB13|
+|BUT1|PA0|PB13 (Boot Button)|
 |BUT2|PA1|None|
 |BUT3|PC6|None|
 |LED1|PB15|None|
 |LED2|PB9|PB5|
 |LED3|PB11|None|
-|DBG1|PB12|PA0|
+|DBG1|PB12|PA0 (D0 Button)|
 |DBG2|PB13|PB10|
 |DBG3|PB14|PB3|
 |DBG4|PB10|PB4|
@@ -151,3 +151,13 @@ MW_RADIO_VERSION:   V0.6.1
 ![](Doc/serial.png)
 
 - Cheers! You have already connected LoRa-E5 to LoRaWAN Network! Can't wait to see you develop some wonderful LoRaWAN End Node applications!
+
+## Application Notes
+
+- LoRa-E5 only supports high power output mode, so you can't use these macro defnitions in `radio_board_if.h` :
+
+```
+#define RBI_CONF_RFO     RBI_CONF_RFO_LP_HP
+// or
+#define RBI_CONF_RFO     RBI_CONF_RFO_LP
+```

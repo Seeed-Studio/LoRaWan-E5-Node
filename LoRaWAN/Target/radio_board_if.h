@@ -61,7 +61,9 @@ extern "C" {
 
 /* Indicates the type of switch between the ones proposed by CONFIG Constants
  */
-#define RBI_CONF_RFO                        RBI_CONF_RFO_LP_HP
+// #define RBI_CONF_RFO                        RBI_CONF_RFO_LP_HP
+/* Please note that LoRa-E5 doesn't support  RBI_CONF_RFO_LP_HP and RBI_CONF_RFO_LP
+ */
 #define RBI_CONF_RFO                        RBI_CONF_RFO_HP
 
 /* Radio maximum wakeup time (in ms) */
