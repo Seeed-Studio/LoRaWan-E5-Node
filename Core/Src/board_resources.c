@@ -65,6 +65,11 @@ static GPIO_TypeDef  *SYS_LED_PORT[SYS_LEDn] = {SYS_LED2_GPIO_PORT, };
 static const uint16_t SYS_LED_PIN[SYS_LEDn] = {SYS_LED2_PIN, };
 
 /**
+  * @brief Polarity led list
+  */
+static const uint8_t SYS_LED_POLARITY[SYS_LEDn] = {SYS_LED2_POLARITY, };
+
+/**
   * @brief Ports button list
   */
 static GPIO_TypeDef   *SYS_BUTTON_PORT[SYS_BUTTONn] = {SYS_BUTTON1_GPIO_PORT, };
@@ -103,7 +108,7 @@ int32_t SYS_LED_Init(Sys_Led_TypeDef Led)
   gpio_init_structure.Speed = GPIO_SPEED_FREQ_HIGH;
 
   HAL_GPIO_Init(SYS_LED_PORT[Led], &gpio_init_structure);
-  HAL_GPIO_WritePin(SYS_LED_PORT[Led], SYS_LED_PIN[Led], GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(SYS_LED_PORT[Led], SYS_LED_PIN[Led], (SYS_LED_POLARITY[Led] == LED_POLARITY_ACTIVE_HIGH) ? GPIO_PIN_RESET : GPIO_PIN_SET);
 
   return 0;
 }
@@ -111,7 +116,7 @@ int32_t SYS_LED_Init(Sys_Led_TypeDef Led)
 int32_t SYS_LED_DeInit(Sys_Led_TypeDef Led)
 {
   /* Turn off SYS_LED */
-  HAL_GPIO_WritePin(SYS_LED_PORT[Led], SYS_LED_PIN[Led], GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(SYS_LED_PORT[Led], SYS_LED_PIN[Led], (SYS_LED_POLARITY[Led] == LED_POLARITY_ACTIVE_HIGH) ? GPIO_PIN_RESET : GPIO_PIN_SET);
 
   /* DeInit the GPIO_SYS_LED pin */
   HAL_GPIO_DeInit(SYS_LED_PORT[Led], SYS_LED_PIN[Led]);
@@ -121,14 +126,14 @@ int32_t SYS_LED_DeInit(Sys_Led_TypeDef Led)
 
 int32_t SYS_LED_On(Sys_Led_TypeDef Led)
 {
-  HAL_GPIO_WritePin(SYS_LED_PORT[Led], SYS_LED_PIN[Led], GPIO_PIN_SET);
+  HAL_GPIO_WritePin(SYS_LED_PORT[Led], SYS_LED_PIN[Led], (SYS_LED_POLARITY[Led] == LED_POLARITY_ACTIVE_HIGH) ? GPIO_PIN_SET : GPIO_PIN_RESET);
 
   return 0;
 }
 
 int32_t SYS_LED_Off(Sys_Led_TypeDef Led)
 {
-  HAL_GPIO_WritePin(SYS_LED_PORT[Led], SYS_LED_PIN[Led], GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(SYS_LED_PORT[Led], SYS_LED_PIN[Led], (SYS_LED_POLARITY[Led] == LED_POLARITY_ACTIVE_HIGH) ? GPIO_PIN_RESET : GPIO_PIN_SET);
 
   return 0;
 }
