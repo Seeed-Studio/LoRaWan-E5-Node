@@ -112,7 +112,13 @@ int32_t RBI_DeInit(void)
   /* and define USE_BSP_DRIVER in the preprocessor definitions  or in platform.h */
   return BSP_RADIO_DeInit();
 #elif defined(MX_NUCLEO_WL55JC1)
-  RF_SW_CTRL3_GPIO_CLK_ENABLE();
+
+  /* Not sure why this call was being done, but not enabling clocks for the
+   * CTRL1 and CTRL2 pins. In any case, this macro is not defined because BSP
+   * support is not available, it's commented out above in RBI_Init(), the
+   * HAL_GPIO_WritePin() and HAL_GPIO_DeInit() calls are commented out, and it
+   * throws a warning when compiling, so it's now commented out */
+  // RF_SW_CTRL3_GPIO_CLK_ENABLE();
 
   /* Turn off switch */
   HAL_GPIO_WritePin(RF_SW_CTRL1_GPIO_PORT, RF_SW_CTRL1_PIN, GPIO_PIN_RESET);
