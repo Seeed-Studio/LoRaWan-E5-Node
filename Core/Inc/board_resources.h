@@ -36,6 +36,15 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /**
+  * @brief Led polarity
+  */
+typedef enum
+{
+  LED_POLARITY_ACTIVE_LOW = 0,
+  LED_POLARITY_ACTIVE_HIGH
+} Led_Polarity_TypeDef;
+
+/**
   * @brief Led enumeration
   */
 typedef enum
@@ -81,6 +90,11 @@ typedef enum
   * @brief Port of Led2
   */
 #define SYS_LED2_GPIO_PORT                          GPIOB
+/**
+  * @brief Polarity of LED
+  */
+#define SYS_LED2_POLARITY                           LED_POLARITY_ACTIVE_LOW
+
 /**
   * @brief Enable GPIOs clock of Led2
   */
