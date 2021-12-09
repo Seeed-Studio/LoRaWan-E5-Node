@@ -1,4 +1,4 @@
-STM32CubeIDE/.settings
-STM32CubeIDE/DEBUG
+.settings
+DEBUG
 *.hex
 .mxproject
