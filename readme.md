@@ -1,9 +1,11 @@
 
 # LoRa-E5-LoRaWAN-End-Node
 
-This wiki is for LoRa-E5 Mini or LoRa-E5 Dev Board, aiming at creating a LoRaWAN End Node with STM32Cube MCU Package for STM32WL series(SDK), to join and send data to LoRaWAN Network.
+This guide is for LoRa-E5 Mini or LoRa-E5 Dev Board, aiming at creating a LoRaWAN End Node with STM32Cube MCU Package for STM32WL series(SDK), to join and send data to LoRaWAN Network.
 
-## Before the start
+**Note:** We have now updated the library to support v1.1.0 which is the latest version of STM32Cube MCU Package for STM32WL series.
+
+## Before starting
 
 - Please read [Erase Factory AT Firmware](https://wiki.seeedstudio.com/LoRa_E5_mini/#21-erase-factory-at-firmware) section first, as if we need to erase the Factory AT Firmware before we program with SDK
 
@@ -13,8 +15,7 @@ This wiki is for LoRa-E5 Mini or LoRa-E5 Dev Board, aiming at creating a LoRaWAN
 
 - Prepare an USB TypeC cable and a ST-LINK. Connect the TypeC cable to the TypeC port for power and serial communication, connect the ST-LINK to the SWD pins like this:
 
-![connection](Doc/connection.png)
-
+![connection](https://files.seeedstudio.com/wiki/LoRa-E5_Development_Kit/wiki%20images/connection.png)
 
 ## GPIO Configuration Overview
 
@@ -41,13 +42,17 @@ This wiki is for LoRa-E5 Mini or LoRa-E5 Dev Board, aiming at creating a LoRaWAN
 
 ### 1. Build the LoRaWAN End Node Example
 
-- Download and copy [this repo](https://github.com/seeed-lora/LoRa-E5-LoRaWAN-End-Node.git) to your SDK folder `en.stm32cubewl\STM32Cube_FW_WL_V1.0.0\Projects\NUCLEO-WL55JC\Applications\LoRaWAN` and replace the origin `en.stm32cubewl\STM32Cube_FW_WL_V1.0.0\Projects\NUCLEO-WL55JC\Applications\LoRaWAN\LoRaWAN_End_Node` folder
+- Click [here](https://github.com/Seeed-Studio/LoRaWan-E5-Node/tree/qian) to visit the **qian** branch of **Seeed-Studio/LoRaWan-E5-Node** repository and download it as a ZIP file
 
-- Open the `LoRaWAN_End_Node` example with `STM32CubeIDE`, by double click file `LoRaWAN_End_Node\STM32CubeIDE\.project`
+<p style="text-align:center;"><img src="https://files.seeedstudio.com/wiki/LoRa-E5_Development_Kit/wiki%20images/lora-e5-qian-github.png" alt="pir" width="1000" height="auto"></p>
+
+- Extract the ZIP file and navigate to `LoRaWan-E5-Node > Projects > Applications > LoRaWAN_End_Node > STM32CubeIDE`
+
+- Double click the **.project** file
 
 - Click `Build Debug` for this example, it should work without any errors
 
-![build](Doc/build.png)
+![build](https://files.seeedstudio.com/wiki/LoRa-E5_Development_Kit/wiki%20images/build.png)
 
 ### 2. Modify your Device EUI, Application EUI, Application KEY and your LoRawan Region
 
