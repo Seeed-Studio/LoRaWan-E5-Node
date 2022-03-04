@@ -36,16 +36,6 @@
 			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Drivers/BSP/STM32WLxx_LoRa_E5_mini</locationURI>
 		</link>
 		<link>
-			<name>Middlewares/LoRaWAN</name>
-			<type>2</type>
-			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN</locationURI>
-		</link>
-		<link>
-			<name>Middlewares/SubGHz_Phy</name>
-			<type>2</type>
-			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/SubGHz_Phy</locationURI>
-		</link>
-		<link>
 			<name>Utilities/stm32_adv_trace.c</name>
 			<type>1</type>
 			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Utilities/trace/adv_trace/stm32_adv_trace.c</locationURI>
@@ -241,6 +231,21 @@
 			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/FreeRTOS/Source/timers.c</locationURI>
 		</link>
 		<link>
+			<name>Middlewares/LoRaWAN/Mac</name>
+			<type>2</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/Mac</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/Utilities</name>
+			<type>2</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/Utilities</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/SubGHz_Phy/stm32_radio_driver</name>
+			<type>2</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/SubGHz_Phy/stm32_radio_driver</locationURI>
+		</link>
+		<link>
 			<name>Middlewares/littlefs/lfs.c</name>
 			<type>1</type>
 			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/littlefs/lfs.c</locationURI>
@@ -251,6 +256,61 @@
 			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/littlefs/lfs_util.c</locationURI>
 		</link>
 		<link>
+			<name>Middlewares/LoRaWAN/Crypto/cmac.c</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/Crypto/cmac.c</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/Crypto/cmac.h</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/Crypto/cmac.h</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/Crypto/lorawan_aes.c</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/Crypto/lorawan_aes.c</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/Crypto/lorawan_aes.h</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/Crypto/lorawan_aes.h</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/Crypto/soft-se.c</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/Crypto/soft-se.c</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/LmHandler/LmHandler.c</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/LmHandler/LmHandler.c</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/LmHandler/LmHandler.h</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/LmHandler/LmHandler.h</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/LmHandler/LmHandlerTypes.h</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/LmHandler/LmHandlerTypes.h</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/LmHandler/NvmDataMgmt.c</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/LmHandler/NvmDataMgmt.c</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/LmHandler/NvmDataMgmt.h</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/LmHandler/NvmDataMgmt.h</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/LmHandler/lorawan_version.h</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/LmHandler/lorawan_version.h</locationURI>
+		</link>
+		<link>
 			<name>Middlewares/FreeRTOS/prortable/GCC/ARM_CM3</name>
 			<type>2</type>
 			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3</locationURI>
@@ -259,6 +319,51 @@
 			<name>Middlewares/FreeRTOS/prortable/MemMang/heap_4.c</name>
 			<type>1</type>
 			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/LmHandler/Packages/LmhPackage.h</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/LmHandler/Packages/LmhPackage.h</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/LmHandler/Packages/LmhpClockSync.c</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/LmHandler/Packages/LmhpClockSync.c</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/LmHandler/Packages/LmhpClockSync.h</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/LmHandler/Packages/LmhpClockSync.h</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/LmHandler/Packages/LmhpCompliance.c</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/LmHandler/Packages/LmhpCompliance.c</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/LmHandler/Packages/LmhpCompliance.h</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/LmHandler/Packages/LmhpCompliance.h</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/LmHandler/Packages/LmhpFirmwareManagement.c</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/LmHandler/Packages/LmhpFirmwareManagement.c</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/LmHandler/Packages/LmhpFirmwareManagement.h</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/LmHandler/Packages/LmhpFirmwareManagement.h</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/LmHandler/Packages/LmhpRemoteMcastSetup.c</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/LmHandler/Packages/LmhpRemoteMcastSetup.c</locationURI>
+		</link>
+		<link>
+			<name>Middlewares/LoRaWAN/LmHandler/Packages/LmhpRemoteMcastSetup.h</name>
+			<type>1</type>
+			<locationURI>$%7BPARENT-4-PROJECT_LOC%7D/Middlewares/Third_Party/LoRaWAN/LmHandler/Packages/LmhpRemoteMcastSetup.h</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
