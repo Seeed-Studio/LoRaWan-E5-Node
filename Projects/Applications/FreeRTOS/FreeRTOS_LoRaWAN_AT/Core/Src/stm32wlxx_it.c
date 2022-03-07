@@ -58,6 +58,8 @@
 /* External variables --------------------------------------------------------*/
 extern RTC_HandleTypeDef hrtc;
 extern SUBGHZ_HandleTypeDef hsubghz;
+extern DMA_HandleTypeDef hdma_usart1_tx;
+extern UART_HandleTypeDef huart1;
 extern DMA_HandleTypeDef hdma_usart2_tx;
 extern UART_HandleTypeDef huart2;
 /* USER CODE BEGIN EV */
@@ -255,10 +257,28 @@ void DMA1_Channel5_IRQHandler(void)
   /* USER CODE BEGIN DMA1_Channel5_IRQn 0 */
 
   /* USER CODE END DMA1_Channel5_IRQn 0 */
+#ifdef USE_USB_SERIAL
+  HAL_DMA_IRQHandler(&hdma_usart1_tx);
+#else
   HAL_DMA_IRQHandler(&hdma_usart2_tx);
+#endif
   /* USER CODE BEGIN DMA1_Channel5_IRQn 1 */
 
   /* USER CODE END DMA1_Channel5_IRQn 1 */
+}
+
+/**
+  * @brief This function handles USART1 Interrupt.
+  */
+void USART1_IRQHandler(void)
+{
+  /* USER CODE BEGIN USART1_IRQn 0 */
+
+  /* USER CODE END USART1_IRQn 0 */
+  HAL_UART_IRQHandler(&huart1);
+  /* USER CODE BEGIN USART1_IRQn 1 */
+
+  /* USER CODE END USART1_IRQn 1 */
 }
 
 /**
