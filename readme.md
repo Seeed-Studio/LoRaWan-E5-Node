@@ -42,21 +42,31 @@ This guide is for LoRa-E5 Mini or LoRa-E5 Dev Board, aiming at creating a LoRaWA
 
 ### 1. Build the LoRaWAN End Node Example
 
-- Click [here](https://github.com/Seeed-Studio/LoRaWan-E5-Node/tree/qian) to visit the **qian** branch of **Seeed-Studio/LoRaWan-E5-Node** repository and download it as a ZIP file
+- **Step 1.** Click [here](https://github.com/Seeed-Studio/LoRaWan-E5-Node/tree/qian) to visit **Seeed-Studio/LoRaWan-E5-Node** repository and download it as a ZIP file
 
-<p style="text-align:center;"><img src="https://files.seeedstudio.com/wiki/LoRa-E5_Development_Kit/wiki%20images/lora-e5-qian-github.png" alt="pir" width="1000" height="auto"></p>
+<p style="text-align:center;"><img src="https://files.seeedstudio.com/wiki/LoRa-E5-mini/main-branch.png" alt="pir" width="1000" height="auto"></p>
 
-- Extract the ZIP file and navigate to `LoRaWan-E5-Node > Projects > Applications > LoRaWAN_End_Node > STM32CubeIDE`
+- **Step 2.** Extract the ZIP file and navigate to `LoRaWan-E5-Node > Projects > Applications > LoRaWAN > LoRaWAN_End_Node > STM32CubeIDE`
 
-- Double click the **.project** file
+- **Step 3.** Double click the **.project** file
 
-- Click `Build Debug` for this example, it should work without any errors
+- **Step 4.** Right click on the project and click **Properties**
+
+<p style="text-align:center;"><img src="https://files.seeedstudio.com/wiki/LoRa-E5-mini/properties-open-2.jpg" alt="pir" width="280" height="auto"></p>
+
+- **Step 5.** Navigate to `C/C++ Build > Settings > MCU Post build outputs`, tick **Convert to Intel Hex file (-O ihex)** and click **Apply and Close**
+
+<p style="text-align:center;"><img src="https://files.seeedstudio.com/wiki/LoRa-E5-mini/set-hex.png" alt="pir" width="600" height="auto"></p>
+
+- **Step 6.** Click **Build 'Debug'**, and it should compile without any errors
 
 ![build](https://files.seeedstudio.com/wiki/LoRa-E5_Development_Kit/wiki%20images/build.png)
 
-### 2. Modify your Device EUI, Application EUI, Application KEY and your LoRawan Region
+<p style="text-align:center;"><img src="https://files.seeedstudio.com/wiki/LoRa-E5-mini/lorawan-debug-2.png" alt="pir" width="520" height="auto"></p>
 
-- Please follow the [guide](https://wiki.seeedstudio.com/LoRa_E5_mini/#13-connect-and-send-data-to-ttn) here to setup your TTN application, get your Application EUI and copy it to the macro definition `LORAWAN_JOIN_EUI` in `LoRaWAN/App/se-identity.h` , for example, my Application EUI is `70 B3 D5 7E D0 03 F0 6A` :
+Now we will modify our **Device EUI**, **Application EUI**, **Application KEY** and **LoRawan Region**
+
+- **Step 7.** Please follow the [guide](https://wiki.seeedstudio.com/LoRa_E5_mini/#13-connect-and-send-data-to-the-things-network) here to setup your TTN application, get your **Application EUI** and copy it to the macro definition `LORAWAN_JOIN_EUI` in `LoRaWAN/App/se-identity.h` , for example, the Application EUI here is `80 00 00 00 00 00 00 0x07` :
 
 ```C
 // LoRaWAN/App/se-identity.h
@@ -64,11 +74,10 @@ This guide is for LoRa-E5 Mini or LoRa-E5 Dev Board, aiming at creating a LoRaWA
 /*!
  * App/Join server IEEE EUI (big endian)
  */
-#define LORAWAN_JOIN_EUI                                   { 0x70, 0xB3, 0xD5, 0x7E, 0xD0, 0x03, 0xF0, 0x6A }
-
+#define LORAWAN_JOIN_EUI                                   { 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07 }
 ```
 
-- Also, you can modify your Device EUI and Application Key, by setting the macro definition `LORAWAN_DEVICE_EUI` and `LORAWAN_NWK_KEY` in `LoRaWAN/App/se-identity.h` , don't forget to ensure `LORAWAN_DEVICE_EUI` and `LORAWAN_NWK_KEY` are the same as the `Device EUI` and `App Key` in TTN console.
+- **Step 8.** Also, you can modify your **Device EUI** and **Application Key**, by setting the macro definition `LORAWAN_DEVICE_EUI` and `LORAWAN_NWK_KEY` in `LoRaWAN/App/se-identity.h`. Make sure `LORAWAN_DEVICE_EUI` and `LORAWAN_NWK_KEY` are the same as the `Device EUI` and `App Key` in TTN console.
 
 ```C
 // LoRaWAN/App/se-identity.h
@@ -76,7 +85,7 @@ This guide is for LoRa-E5 Mini or LoRa-E5 Dev Board, aiming at creating a LoRaWA
 /*!
  * end-device IEEE EUI (big endian)
  */
-#define LORAWAN_DEVICE_EUI                                 { 0x00, 0x80, 0xE1, 0x15, 0x00, 0x07, 0x4C, 0xD5 }
+#define LORAWAN_DEVICE_EUI                                 { 0x2C, 0xF7, 0xF1, 0x20, 0x24, 0x90, 0x03, 0x63 }
 
 /*!
  * Network root key
@@ -84,85 +93,46 @@ This guide is for LoRa-E5 Mini or LoRa-E5 Dev Board, aiming at creating a LoRaWA
 #define LORAWAN_NWK_KEY                                    2B,7E,15,16,28,AE,D2,A6,AB,F7,15,88,09,CF,4F,3C
 ```
 
-![](Doc/key.png)
+<p style="text-align:center;"><img src="https://files.seeedstudio.com/wiki/LoRa-E5-mini/se-identity.png" alt="pir" width="1000" height="auto"></p>
 
-- The default LoRaWAN Region is `EU868`, you can modify it, by setting the macro definition `ACTIVE_REGION` in `LoRaWAN/App/lora_app.h`
+- **Step 9.** The default LoRaWAN Region is `EU868`, you can modify it, by setting the macro definition `ACTIVE_REGION` in `LoRaWAN/App/lora_app.h`
 
 ```c
 // LoRaWAN/App/lora_app.h
 
 /* LoraWAN application configuration (Mw is configured by lorawan_conf.h) */
 /* Available: LORAMAC_REGION_AS923, LORAMAC_REGION_AU915, LORAMAC_REGION_EU868, LORAMAC_REGION_KR920, LORAMAC_REGION_IN865, LORAMAC_REGION_US915, LORAMAC_REGION_RU864 */
-#define ACTIVE_REGION                               LORAMAC_REGION_EU868
-
+#define ACTIVE_REGION                               LORAMAC_REGION_US915
 ```
 
-![](Doc/region.png)
+<p style="text-align:center;"><img src="https://files.seeedstudio.com/wiki/LoRa-E5-mini/lora-app-h.png" alt="pir" width="1000" height="auto"></p>
 
-- After modification, please **rebuild the example** and program to your LoRa-E5. Open `STM32CubeProgrammer`, connect ST-LINK to your PC, hold `RESET Button` of your Device, then click `Connect` and release `RESET Button`:
+- **Step 10.** After the above modifications, **rebuild** the example and program to your LoRa-E5. Open `STM32CubeProgrammer`, connect ST-LINK to your PC, hold `RESET Button` of your Device, then click `Connect` and release `RESET Button`:
 
-![](Doc/program1.png)
+<p style="text-align:center;"><img src="https://files.seeedstudio.com/wiki/LoRa-E5_Development_Kit/wiki%20images/program1.png" alt="pir" width="1000" height="auto"></p>
 
-- Make sure the Read Out Protection is `AA`, if it is shown as `BB`, select `AA` and click `Apply`:
+- **Step 11.** Make sure the Read Out Protection is `AA`, if it is shown as `BB`, select `AA` and click `Apply`:
 
-![](Doc/program2.png)
+<p style="text-align:center;"><img src="https://files.seeedstudio.com/wiki/LoRa-E5_Development_Kit/wiki%20images/program2.png" alt="pir" width="1000" height="auto"></p>
 
-- Now, go to the `Erasing & Programming` page, select your hex file path(my path is `E:\en.stm32cubewl\STM32Cube_FW_WL_V1.0.0\Projects\NUCLEO-WL55JC\Applications\LoRaWAN\LoRaWAN_End_Node\STM32CubeIDE\LoRaWAN_End_Node_Debug.hex` ), select the programming options as the following picture, then click `Start Programming`! Once the prgramming is finished, 
+- **Step 12.** Now, go to the `Erasing & Programming` page, select your hex file path(for example: `C:\Users\user\Downloads\LoRaWan-E5-Node\Projects\Applications\LoRaWAN\LoRaWAN_End_Node\STM32CubeIDE\Debug\LoRaWAN_End_Node.hex` ), select the programming options as the following picture, then click `Start Programming`! 
 
-![](Doc/program3.png)
+<p style="text-align:center;"><img src="https://files.seeedstudio.com/wiki/LoRa-E5_Development_Kit/wiki%20images/program3.png" alt="pir" width="1000" height="auto"></p>
 
+You will see the message **Download verified successfully**, once programming is finished.
 
-### 3. Connect to TTN
+- **Step 13.** If your LoRaWAN Gateway and TTN are setup, LoRa-E5 will join successfully after reset! A confirm LoRaWAN package will be sent to TTN every 30 seconds. The following log will be printed on the serial monitor (Arduino Serial Monitor is used here) if the join is successful:
 
-- If your LoRaWAN Gateway and TTN are setup, LoRa-E5 will join successfully after reset! A comfirm LoRaWAN package will be sent to TTN every 30 seconds. The following log will come out from the serial port if the join is successful:
+<p style="text-align:center;"><img src="https://files.seeedstudio.com/wiki/LoRa-E5-mini/TTN-joined.png" alt="pir" width="600" height="auto"></p>
 
-```
-APP_VERSION:        V1.0.0
-MW_LORAWAN_VERSION: V2.2.1
-MW_RADIO_VERSION:   V0.6.1
-###### OTAA ######
-###### AppKey:  2B 7E 15 16 28 AE D2 A6 AB F7 15 88 09 CF 4F 3C
-###### NwkKey:  2B 7E 15 16 28 AE D2 A6 AB F7 15 88 09 CF 4F 3C
-###### ABP  ######
-###### AppSKey: 2B 7E 15 16 28 AE D2 A6 AB F7 15 88 09 CF 4F 3C
-###### NwkSKey: 2B 7E 15 16 28 AE D2 A6 AB F7 15 88 09 CF 4F 3C
-###### DevEui:  00-80-E1-15-00-07-4C-D5
-###### AppEui:  70-B3-D5-7E-D0-03-F0-6A
-0s045:TX on freq 868100000 Hz at DR 0
-1s550:MAC txDone
-6s572:RX_1 on freq 868100000 Hz at DR 0
-6s779:MAC rxTimeOut
-7s572:RX_2 on freq 869525000 Hz at DR 0
-7s709:PRE OK
-8s246:HDR OK
-9s393:MAC rxDone
+- Cheers! Now you have connected LoRa-E5 to LoRaWAN Network! You can now proceed to develop more exciting LoRaWAN End Node applications!
 
-###### = JOINED = OTAA =====================
-30s068:temp= 25
-30s068:VDDA= 254
-30s069:TX on freq 868500000 Hz at DR 0
-30s082:SEND REQUEST
-31s728:MAC txDone
-32s750:RX_1 on freq 868500000 Hz at DR 0
-32s957:MAC rxTimeOut
-33s706:RX_2 on freq 869525000 Hz at DR 3
-33s744:PRE OK
-33s815:HDR OK
-33s897:MAC rxDone
-
-###### ========== MCPS-Confirm =============
-```
-
-![](Doc/serial.png)
-
-- Cheers! You have already connected LoRa-E5 to LoRaWAN Network! Can't wait to see you develop some wonderful LoRaWAN End Node applications!
-
-## Application Notes
-
-- LoRa-E5 only supports high power output mode, so you can't use these macro defnitions in `radio_board_if.h` :
+**Note:** LoRa-E5 only supports high power output mode, so you can't use these macro definitions in `radio_board_if.h` :
 
 ```
 #define RBI_CONF_RFO     RBI_CONF_RFO_LP_HP
 // or
 #define RBI_CONF_RFO     RBI_CONF_RFO_LP
 ```
+
+Eventhough **RBI_CONF_RFO** is defined as **RBI_CONF_RFO_LP_HP** in `radio_board_if.h`, it will not be used because **USE_BSP_DRIVER** is defined and **BSP_RADIO_GetTxConfig()** function returns **RADIO_CONF_RFO_HP**
