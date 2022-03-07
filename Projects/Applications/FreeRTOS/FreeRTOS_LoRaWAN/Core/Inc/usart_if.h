@@ -53,7 +53,7 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-
+#define USE_USB_SERIAL  // use USB serial
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/

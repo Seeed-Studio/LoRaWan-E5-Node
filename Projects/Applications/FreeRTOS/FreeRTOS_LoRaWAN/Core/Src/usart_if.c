@@ -30,11 +30,13 @@
 /**
   * @brief DMA handle
   */
+extern DMA_HandleTypeDef hdma_usart1_tx;
 extern DMA_HandleTypeDef hdma_usart2_tx;
 
 /**
   * @brief UART handle
   */
+extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart2;
 
 /**
@@ -106,7 +108,11 @@ UTIL_ADV_TRACE_Status_t vcom_Init(void (*cb)(void *))
   /* USER CODE END vcom_Init_1 */
   TxCpltCallback = cb;
   MX_DMA_Init();
+#ifdef USE_USB_SERIAL
+  MX_USART1_UART_Init();
+#else
   MX_USART2_UART_Init();
+#endif
   LL_EXTI_EnableIT_0_31(LL_EXTI_LINE_27);
   return UTIL_ADV_TRACE_OK;
   /* USER CODE BEGIN vcom_Init_2 */
@@ -119,13 +125,21 @@ UTIL_ADV_TRACE_Status_t vcom_DeInit(void)
   /* USER CODE BEGIN vcom_DeInit_1 */
 
   /* USER CODE END vcom_DeInit_1 */
+#ifdef USE_USB_SERIAL
+  /* ##-1- Reset peripherals ################################################## */
+  __HAL_RCC_USART1_FORCE_RESET();
+  __HAL_RCC_USART1_RELEASE_RESET();
+
+  /* ##-2- MspDeInit ################################################## */
+  HAL_UART_MspDeInit(&huart1);
+#else
   /* ##-1- Reset peripherals ################################################## */
   __HAL_RCC_USART2_FORCE_RESET();
   __HAL_RCC_USART2_RELEASE_RESET();
 
   /* ##-2- MspDeInit ################################################## */
   HAL_UART_MspDeInit(&huart2);
-
+#endif
   /* ##-3- Disable the NVIC for DMA ########################################### */
   /* USER CODE BEGIN 1 */
   HAL_NVIC_DisableIRQ(DMA1_Channel5_IRQn);
@@ -142,7 +156,11 @@ void vcom_Trace(uint8_t *p_data, uint16_t size)
   /* USER CODE BEGIN vcom_Trace_1 */
 
   /* USER CODE END vcom_Trace_1 */
+#ifdef USE_USB_SERIAL
+  HAL_UART_Transmit(&huart1, p_data, size, 1000);
+#else
   HAL_UART_Transmit(&huart2, p_data, size, 1000);
+#endif
   /* USER CODE BEGIN vcom_Trace_2 */
 
   /* USER CODE END vcom_Trace_2 */
@@ -153,7 +171,11 @@ UTIL_ADV_TRACE_Status_t vcom_Trace_DMA(uint8_t *p_data, uint16_t size)
   /* USER CODE BEGIN vcom_Trace_DMA_1 */
 
   /* USER CODE END vcom_Trace_DMA_1 */
+#ifdef USE_USB_SERIAL
+  HAL_UART_Transmit_DMA(&huart1, p_data, size);
+#else
   HAL_UART_Transmit_DMA(&huart2, p_data, size);
+#endif
   return UTIL_ADV_TRACE_OK;
   /* USER CODE BEGIN vcom_Trace_DMA_2 */
 
@@ -172,7 +194,24 @@ UTIL_ADV_TRACE_Status_t vcom_ReceiveInit(void (*RxCb)(uint8_t *rxChar, uint16_t 
 
   /*Set wakeUp event on start bit*/
   WakeUpSelection.WakeUpEvent = UART_WAKEUP_ON_STARTBIT;
+#ifdef USE_USB_SERIAL
+  HAL_UARTEx_StopModeWakeUpSourceConfig(&huart1, WakeUpSelection);
 
+  /* Make sure that no UART transfer is on-going */
+  while (__HAL_UART_GET_FLAG(&huart1, USART_ISR_BUSY) == SET);
+
+  /* Make sure that UART is ready to receive)   */
+  while (__HAL_UART_GET_FLAG(&huart1, USART_ISR_REACK) == RESET);
+
+  /* Enable USART interrupt */
+  __HAL_UART_ENABLE_IT(&huart1, UART_IT_WUF);
+
+  /*Enable wakeup from stop mode*/
+  HAL_UARTEx_EnableStopMode(&huart1);
+
+  /*Start LPUART receive on IT*/
+  HAL_UART_Receive_IT(&huart1, &charRx, 1);
+#else
   HAL_UARTEx_StopModeWakeUpSourceConfig(&huart2, WakeUpSelection);
 
   /* Make sure that no UART transfer is on-going */
@@ -189,7 +228,7 @@ UTIL_ADV_TRACE_Status_t vcom_ReceiveInit(void (*RxCb)(uint8_t *rxChar, uint16_t 
 
   /*Start LPUART receive on IT*/
   HAL_UART_Receive_IT(&huart2, &charRx, 1);
-
+#endif
   return UTIL_ADV_TRACE_OK;
   /* USER CODE BEGIN vcom_ReceiveInit_2 */
 
@@ -201,6 +240,19 @@ void vcom_Resume(void)
   /* USER CODE BEGIN vcom_Resume_1 */
 
   /* USER CODE END vcom_Resume_1 */
+#ifdef USE_USB_SERIAL
+  /*to re-enable lost UART settings*/
+  if (HAL_UART_Init(&huart1) != HAL_OK)
+  {
+	Error_Handler();
+  }
+
+  /*to re-enable lost DMA settings*/
+  if (HAL_DMA_Init(&hdma_usart1_tx) != HAL_OK)
+  {
+	Error_Handler();
+  }
+#else
   /*to re-enable lost UART settings*/
   if (HAL_UART_Init(&huart2) != HAL_OK)
   {
@@ -212,6 +264,7 @@ void vcom_Resume(void)
   {
     Error_Handler();
   }
+#endif
   /* USER CODE BEGIN vcom_Resume_2 */
 
   /* USER CODE END vcom_Resume_2 */
@@ -234,11 +287,19 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart2)
   /* USER CODE BEGIN HAL_UART_RxCpltCallback_1 */
 
   /* USER CODE END HAL_UART_RxCpltCallback_1 */
+#ifdef USE_USB_SERIAL
+  if ((NULL != RxCpltCallback) && (HAL_UART_ERROR_NONE == huart2->ErrorCode))
+  {
+	RxCpltCallback(&charRx, 1, 0);
+  }
+  HAL_UART_Receive_IT(huart2, &charRx, 1);
+#else
   if ((NULL != RxCpltCallback) && (HAL_UART_ERROR_NONE == huart2->ErrorCode))
   {
     RxCpltCallback(&charRx, 1, 0);
   }
   HAL_UART_Receive_IT(huart2, &charRx, 1);
+#endif
   /* USER CODE BEGIN HAL_UART_RxCpltCallback_2 */
 
   /* USER CODE END HAL_UART_RxCpltCallback_2 */

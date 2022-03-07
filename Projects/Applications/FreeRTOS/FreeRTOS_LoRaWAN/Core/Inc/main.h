@@ -30,7 +30,7 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32wlxx_hal.h"
 #include "cmsis_os.h"
-
+#include "usart_if.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -88,10 +88,14 @@ void Error_Handler(void);
 #define BUT2_EXTI_IRQn EXTI1_IRQn
 #define LED3_Pin GPIO_PIN_11
 #define LED3_GPIO_Port GPIOB
-#define USARTx_RX_Pin GPIO_PIN_3
-#define USARTx_RX_GPIO_Port GPIOA
-#define USARTx_TX_Pin GPIO_PIN_2
-#define USARTx_TX_GPIO_Port GPIOA
+#define USART1_RX_Pin GPIO_PIN_7
+#define USART1_RX_GPIO_Port GPIOB
+#define USART1_TX_Pin GPIO_PIN_6
+#define USART1_TX_GPIO_Port GPIOB
+#define USART2_RX_Pin GPIO_PIN_3
+#define USART2_RX_GPIO_Port GPIOA
+#define USART2_TX_Pin GPIO_PIN_2
+#define USART2_TX_GPIO_Port GPIOA
 #define PROB4_Pin GPIO_PIN_10
 #define PROB4_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
