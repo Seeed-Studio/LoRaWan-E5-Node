@@ -64,7 +64,9 @@ __weak void PreSleepProcessing(uint32_t *ulExpectedIdleTime)
 /* place for user code */
   HAL_LPTIM_Counter_Start_IT(&hlptim1,
 			*ulExpectedIdleTime * LSI_VALUE / 1000);
-  HAL_PWREx_EnterSTOP2Mode(PWR_STOPENTRY_WFI);
+  /*Enter Low Power Mode*/
+  // HAL_PWREx_EnterSTOP2Mode(PWR_STOPENTRY_WFI);
+  HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
 //  *ulExpectedIdleTime = 0;
 }
 
