@@ -1,7 +1,7 @@
 
 # LoRa-E5-LoRaWAN-End-Node
 
-This guide is for LoRa-E5 Mini or LoRa-E5 Dev Board, aiming at creating a LoRaWAN End Node with STM32Cube MCU Package for STM32WL series(SDK), to join and send data to LoRaWAN Network.
+This guide is for LoRa-E5 mini/ LoRa-E5 Development Kit aiming at building several applications with STM32Cube MCU Package for STM32WL series(SDK).
 
 **Note:** We have now updated the library to support v1.1.0 which is the latest version of STM32Cube MCU Package for STM32WL series.
 
