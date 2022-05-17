@@ -99,7 +99,6 @@ void Error_Handler(void);
 #define PROB4_Pin GPIO_PIN_10
 #define PROB4_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
-LPTIM_HandleTypeDef hlptim1;
 
 /* USER CODE END Private defines */
 

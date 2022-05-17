@@ -53,6 +53,7 @@
 
 /* USER CODE END FunctionPrototypes */
 extern void SystemClock_Config(void);
+extern LPTIM_HandleTypeDef hlptim1;
 /* USER CODE END FunctionPrototypes */
 
 /* GetIdleTaskMemory prototype (linked to static allocation support) */
